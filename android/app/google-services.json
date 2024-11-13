@@ -1,0 +1,200 @@
+{
+  "project_info": {
+    "project_number": "663535611738",
+    "project_id": "school-8bc86",
+    "storage_bucket": "school-8bc86.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:663535611738:android:57fb4ade68bc283f574d63",
+        "android_client_info": {
+          "package_name": "bah.dev.school.jasmine"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCLViu3JzpfdV_7uzKnOAC1yL43lysuZTM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:663535611738:android:d98a3f31ce8aa594574d63",
+        "android_client_info": {
+          "package_name": "com.lam.alsama.altafawq"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCLViu3JzpfdV_7uzKnOAC1yL43lysuZTM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:663535611738:android:d803caf1fc298042574d63",
+        "android_client_info": {
+          "package_name": "com.lam.mama.ayman"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCLViu3JzpfdV_7uzKnOAC1yL43lysuZTM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:663535611738:android:f5b5b77610908784574d63",
+        "android_client_info": {
+          "package_name": "com.lamassu.alnakhelschool"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCLViu3JzpfdV_7uzKnOAC1yL43lysuZTM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:663535611738:android:d3129850bf27a26e574d63",
+        "android_client_info": {
+          "package_name": "com.lamassu.baghdadBritishSchool"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCLViu3JzpfdV_7uzKnOAC1yL43lysuZTM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:663535611738:android:df1b05fe7a66b143574d63",
+        "android_client_info": {
+          "package_name": "com.lamassu.jasmine.school"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCLViu3JzpfdV_7uzKnOAC1yL43lysuZTM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:663535611738:android:1b027bc7cc86e4f6574d63",
+        "android_client_info": {
+          "package_name": "dev.flutter.iraqfamily"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCLViu3JzpfdV_7uzKnOAC1yL43lysuZTM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:663535611738:android:086bcb2f624392d2574d63",
+        "android_client_info": {
+          "package_name": "dev.flutter.scientificmawsooa"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCLViu3JzpfdV_7uzKnOAC1yL43lysuZTM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:663535611738:android:727ffffb56565af2574d63",
+        "android_client_info": {
+          "package_name": "net.lam.BBIS.nasim"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCLViu3JzpfdV_7uzKnOAC1yL43lysuZTM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:663535611738:android:df32ada34fd191ad574d63",
+        "android_client_info": {
+          "package_name": "net.lam.almasara"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCLViu3JzpfdV_7uzKnOAC1yL43lysuZTM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

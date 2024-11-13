@@ -1,0 +1,6 @@
+framework module another_audio_recorder {
+  umbrella header "another_audio_recorder-umbrella.h"
+
+  export *
+  module * { export * }
+}
