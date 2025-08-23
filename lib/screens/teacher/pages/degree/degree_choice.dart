@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_awesome_select_clone/flutter_awesome_select.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
-import 'package:flutter_awesome_select/flutter_awesome_select.dart';
 import 'package:get/get.dart';
 
 import '../../../../api_connection/teacher/api_degree_teacher.dart';

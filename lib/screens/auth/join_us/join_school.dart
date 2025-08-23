@@ -3,10 +3,10 @@ import 'dart:convert';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_awesome_select_clone/flutter_awesome_select.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
-import 'package:flutter_awesome_select/flutter_awesome_select.dart';
 import 'package:get/get.dart';
-import 'package:rounded_loading_button/rounded_loading_button.dart';
+import 'package:rounded_loading_button_plus/rounded_loading_button.dart';
 
 import '../../../api_connection/student/api_general_data.dart';
 import '../../../static_files/my_color.dart';

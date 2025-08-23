@@ -1,7 +1,7 @@
 {
   "name": "record_darwin",
   "version": "1.0.0",
-  "summary": "record package for iOS and macOS implementations",
+  "summary": "record package for iOS implementation",
   "description": "A Flutter plugin for voice recording.",
   "homepage": "https://github.com/llfbandit/record/tree/master/record_darwin",
   "license": {
@@ -17,23 +17,18 @@
   "source_files": "Classes/**/*",
   "public_header_files": "Classes/**/*.h",
   "swift_versions": "5.0",
-  "ios": {
-    "dependencies": {
-      "Flutter": [
+  "dependencies": {
+    "Flutter": [
 
-      ]
-    }
-  },
-  "osx": {
-    "dependencies": {
-      "FlutterMacOS": [
-
-      ]
-    }
+    ]
   },
   "platforms": {
-    "ios": "11.0",
-    "osx": "10.15"
+    "ios": "11.0"
+  },
+  "resource_bundles": {
+    "record_darwin_privacy": [
+      "Resources/PrivacyInfo.xcprivacy"
+    ]
   },
   "pod_target_xcconfig": {
     "DEFINES_MODULE": "YES"

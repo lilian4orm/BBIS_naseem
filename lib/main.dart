@@ -99,7 +99,7 @@ class _MyAppState extends State<MyApp> {
           colorScheme: ColorScheme.fromSwatch().copyWith(
             error: Colors.red,
           ),
-          tabBarTheme: const TabBarTheme(
+          tabBarTheme: const TabBarThemeData(
             labelStyle: TextStyle(fontFamily: 'Almarai'),
             unselectedLabelStyle: TextStyle(fontFamily: 'Almarai'),
           ),

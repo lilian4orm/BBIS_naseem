@@ -16,7 +16,9 @@ publish_to: "none" # Remove this line if you wish to publish to pub.dev
 # https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
 # In Windows, build-name is used as the major, minor, and patch parts
 # of the product and file versions while build-number is used as the build suffix.
-version: 1.0.3+5
+
+# IOS version
+version: 1.0.5+1
 
 environment:
   sdk: ">=3.0.0 <4.0.0"
@@ -28,7 +30,7 @@ dependencies:
   get: ^4.6.5
   get_storage: ^2.1.1
   flutter_easyloading: ^3.0.5
-  rounded_loading_button: ^2.1.0
+  rounded_loading_button_plus: ^3.0.1
   line_icons: ^2.0.3
   intl: ^0.19.0
   flutter_native_splash: any
@@ -70,7 +72,7 @@ dependencies:
   audio_video_progress_bar: ^2.0.3
   just_waveform: ^0.0.5
   image_picker: ^1.0.4
-  record: ^5.1.2
+  record: ^6.1.1
   flutter_audio_waveforms: ^1.2.1+8
   flutter_svg: ^2.0.7
   uuid: ^4.4.2
@@ -86,7 +88,7 @@ dependencies:
   gradient_borders: ^1.0.0
   flutter_arc_speed_dial: ^2.0.1
   loader_overlay: ^4.0.1
-  flutter_awesome_select: ^6.5.0
+  flutter_awesome_select_clone: ^7.5.0
   image_gallery_saver: ^2.0.3
   dots_indicator: ^3.0.0
   flutter_device_id: ^1.0.1

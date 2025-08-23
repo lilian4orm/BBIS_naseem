@@ -10,7 +10,7 @@ import 'package:get/get.dart';
 import 'package:http_parser/http_parser.dart';
 import 'package:line_icons/line_icons.dart';
 import 'package:path/path.dart' as p;
-import 'package:rounded_loading_button/rounded_loading_button.dart';
+import 'package:rounded_loading_button_plus/rounded_loading_button.dart';
 
 import '../../../api_connection/student/api_profile.dart';
 import '../../../static_files/my_color.dart';

@@ -1,21 +1,23 @@
 import 'dart:async';
-import 'package:BBInaseem/main.dart';
-import 'package:BBInaseem/screens/auth/accounts_screen.dart';
-import 'package:flutter_device_id/flutter_device_id.dart';
-import 'package:flutter_svg/svg.dart';
-import 'package:line_icons/line_icons.dart';
 import 'dart:convert';
 import 'dart:io';
+
+import 'package:BBInaseem/main.dart';
+import 'package:BBInaseem/provider/locale_controller.dart';
+import 'package:BBInaseem/screens/auth/accounts_screen.dart';
 import 'package:auto_size_text_pk/auto_size_text_pk.dart';
 import 'package:crypto/crypto.dart';
 import 'package:device_info_plus/device_info_plus.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_device_id/flutter_device_id.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
-import 'package:BBInaseem/provider/locale_controller.dart';
-import 'package:rounded_loading_button/rounded_loading_button.dart';
+import 'package:line_icons/line_icons.dart';
+import 'package:rounded_loading_button_plus/rounded_loading_button.dart';
+
 import '../../api_connection/auth_connection.dart';
 import '../../provider/auth_provider.dart';
 import '../../static_files/my_color.dart';

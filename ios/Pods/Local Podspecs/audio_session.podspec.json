@@ -13,8 +13,8 @@
   "source": {
     "path": "."
   },
-  "source_files": "Classes/**/*",
-  "public_header_files": "Classes/**/*.h",
+  "source_files": "audio_session/Sources/audio_session/**/*.{h,m}",
+  "public_header_files": "audio_session/Sources/audio_session/include/**/*.h",
   "dependencies": {
     "Flutter": [
 
@@ -24,7 +24,6 @@
     "ios": "12.0"
   },
   "pod_target_xcconfig": {
-    "DEFINES_MODULE": "YES",
-    "VALID_ARCHS[sdk=iphonesimulator*]": "x86_64"
+    "DEFINES_MODULE": "YES"
   }
 }

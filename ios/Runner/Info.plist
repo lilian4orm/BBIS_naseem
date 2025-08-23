@@ -87,7 +87,7 @@
 				<string>[Your project PRODUCT_BUNDLE_IDENTIFIER value]</string>
 				<key>CFBundleURLSchemes</key>
 				<array>
-					<string>example</string>
+					<string>bbisschooliq</string>
 				</array>
 			</dict>
 		</array>

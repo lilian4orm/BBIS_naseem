@@ -1,7 +1,8 @@
 import 'package:empty_widget/empty_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_awesome_select/flutter_awesome_select.dart';
+import 'package:flutter_awesome_select_clone/flutter_awesome_select.dart';
 import 'package:get/get.dart';
+
 import '../../../api_connection/teacher/api_degree_teacher.dart';
 import '../../../provider/auth_provider.dart';
 import '../../../provider/teacher/provider_degree_teacher.dart';

@@ -1,30 +1,39 @@
 {
   "name": "just_waveform",
   "version": "0.0.1",
-  "summary": "A new flutter plugin project.",
-  "description": "A new flutter plugin project.",
-  "homepage": "http://example.com",
+  "summary": "Flutter audio waveform extractor",
+  "description": "A Flutter plugin to extract the waveform from an audio file.",
+  "homepage": "https://github.com/ryanheise/just_waveform",
   "license": {
     "file": "../LICENSE"
   },
   "authors": {
-    "Your Company": "email@example.com"
+    "Ryan Heise": "ryan@ryanheise.com"
   },
   "source": {
     "path": "."
   },
-  "source_files": "Classes/**/*",
-  "public_header_files": "Classes/**/*.h",
-  "dependencies": {
-    "Flutter": [
+  "source_files": "just_waveform/Sources/just_waveform/**/*.{h,m}",
+  "public_header_files": "just_waveform/Sources/just_waveform/include/**/*.h",
+  "ios": {
+    "dependencies": {
+      "Flutter": [
 
-    ]
+      ]
+    }
+  },
+  "osx": {
+    "dependencies": {
+      "FlutterMacOS": [
+
+      ]
+    }
   },
   "platforms": {
-    "ios": "8.0"
+    "ios": "12.0",
+    "osx": "10.14"
   },
   "pod_target_xcconfig": {
-    "DEFINES_MODULE": "YES",
-    "EXCLUDED_ARCHS[sdk=iphonesimulator*]": "i386"
+    "DEFINES_MODULE": "YES"
   }
 }

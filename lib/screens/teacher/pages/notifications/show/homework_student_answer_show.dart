@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
-import 'package:rounded_loading_button/rounded_loading_button.dart';
+import 'package:rounded_loading_button_plus/rounded_loading_button.dart';
+
 import '../../../../../api_connection/teacher/api_notification.dart';
 import '../../../../../provider/teacher/provider_notification.dart';
 import '../../../../../static_files/my_appbar.dart';
@@ -12,14 +13,18 @@ import '../../../../../static_files/my_times.dart';
 class HomeworkStudentAnswerShow extends StatefulWidget {
   final Map data;
   final String contentUrl;
-  const HomeworkStudentAnswerShow({Key? key, required this.data, required this.contentUrl}) : super(key: key);
+  const HomeworkStudentAnswerShow(
+      {Key? key, required this.data, required this.contentUrl})
+      : super(key: key);
 
   @override
-  _HomeworkStudentAnswerShowState createState() => _HomeworkStudentAnswerShowState();
+  _HomeworkStudentAnswerShowState createState() =>
+      _HomeworkStudentAnswerShowState();
 }
 
 class _HomeworkStudentAnswerShowState extends State<HomeworkStudentAnswerShow> {
-  final RoundedLoadingButtonController _btnController = RoundedLoadingButtonController();
+  final RoundedLoadingButtonController _btnController =
+      RoundedLoadingButtonController();
   TextEditingController note = TextEditingController();
 
   @override
@@ -32,7 +37,10 @@ class _HomeworkStudentAnswerShowState extends State<HomeworkStudentAnswerShow> {
             child: ListView(
               shrinkWrap: true,
               children: [
-                Padding(padding: const EdgeInsets.all(10), child: imageGrid(widget.contentUrl, widget.data['homework_answers_imgs'])),
+                Padding(
+                    padding: const EdgeInsets.all(10),
+                    child: imageGrid(widget.contentUrl,
+                        widget.data['homework_answers_imgs'])),
                 Text(toDateAndTime(widget.data['created_at'], 12)),
                 Padding(
                   padding: const EdgeInsets.only(right: 8, left: 8),
@@ -47,7 +55,9 @@ class _HomeworkStudentAnswerShowState extends State<HomeworkStudentAnswerShow> {
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
                           const Text("الطالب: "),
-                          Text(widget.data['homework_answers_student']['account_name'].toString()),
+                          Text(widget.data['homework_answers_student']
+                                  ['account_name']
+                              .toString()),
                         ],
                       ),
                       Row(
@@ -56,9 +66,13 @@ class _HomeworkStudentAnswerShowState extends State<HomeworkStudentAnswerShow> {
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
                           const Text("الصف: "),
-                          Text(widget.data['homework_answers_student']['account_division_current']['class_name'].toString() +
+                          Text(widget.data['homework_answers_student']
+                                      ['account_division_current']['class_name']
+                                  .toString() +
                               " - " +
-                              widget.data['homework_answers_student']['account_division_current']['leader'].toString()),
+                              widget.data['homework_answers_student']
+                                      ['account_division_current']['leader']
+                                  .toString()),
                         ],
                       ),
                     ],
@@ -69,7 +83,8 @@ class _HomeworkStudentAnswerShowState extends State<HomeworkStudentAnswerShow> {
                     margin: const EdgeInsets.all(20),
                     child: Text(
                       widget.data['homework_answers_text'].toString(),
-                      style: const TextStyle(fontSize: 18, color: MyColor.purple),
+                      style:
+                          const TextStyle(fontSize: 18, color: MyColor.purple),
                     ),
                   )
               ],
@@ -120,8 +135,10 @@ class _HomeworkStudentAnswerShowState extends State<HomeworkStudentAnswerShow> {
               Row(
                 children: [
                   Radio(
-                    fillColor: MaterialStateColor.resolveWith((states) => MyColor.purple),
-                    focusColor: MaterialStateColor.resolveWith((states) => MyColor.purple),
+                    fillColor: MaterialStateColor.resolveWith(
+                        (states) => MyColor.purple),
+                    focusColor: MaterialStateColor.resolveWith(
+                        (states) => MyColor.purple),
                     value: 1,
                     groupValue: val.radioValue,
                     onChanged: val.change,
@@ -132,8 +149,10 @@ class _HomeworkStudentAnswerShowState extends State<HomeworkStudentAnswerShow> {
               Row(
                 children: [
                   Radio(
-                    fillColor: MaterialStateColor.resolveWith((states) => MyColor.purple),
-                    focusColor: MaterialStateColor.resolveWith((states) => MyColor.purple),
+                    fillColor: MaterialStateColor.resolveWith(
+                        (states) => MyColor.purple),
+                    focusColor: MaterialStateColor.resolveWith(
+                        (states) => MyColor.purple),
                     value: 0,
                     groupValue: val.radioValue,
                     onChanged: val.change,
@@ -197,7 +216,11 @@ class _HomeworkStudentAnswerShowState extends State<HomeworkStudentAnswerShow> {
     int? isCorrect = Get.put(SelectSwitchProvider()).radioValue;
     if (isCorrect == 0) {
     } else if (isCorrect == 1) {}
-    Map _data = {"isCorrect": isCorrect == 0 ? false : true, "note": note.text, "homework_id": widget.data['_id']};
+    Map _data = {
+      "isCorrect": isCorrect == 0 ? false : true,
+      "note": note.text,
+      "homework_id": widget.data['_id']
+    };
     NotificationsAPI().addCorrect(_data).then((res) {
       Get.back();
       if (!res['error']) {

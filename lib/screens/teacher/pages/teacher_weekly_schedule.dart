@@ -1,7 +1,7 @@
+import 'package:card_swiper/card_swiper.dart';
 import 'package:empty_widget/empty_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:card_swiper/card_swiper.dart';
-import 'package:flutter_awesome_select/flutter_awesome_select.dart';
+import 'package:flutter_awesome_select_clone/flutter_awesome_select.dart';
 import 'package:get/get.dart';
 
 import '../../../api_connection/teacher/api_weekly_schedule.dart';
