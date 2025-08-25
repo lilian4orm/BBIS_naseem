@@ -1,4 +1,4 @@
-import 'package:empty_widget/empty_widget.dart';
+import 'package:empty_widget_pro/empty_widget_pro.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';

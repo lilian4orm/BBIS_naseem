@@ -1,4 +1,4 @@
-import 'package:empty_widget/empty_widget.dart';
+import 'package:empty_widget_pro/empty_widget_pro.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_awesome_select_clone/flutter_awesome_select.dart';
 import 'package:get/get.dart';

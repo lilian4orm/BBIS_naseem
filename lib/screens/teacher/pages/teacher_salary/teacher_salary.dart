@@ -1,6 +1,6 @@
 //var a = Get.put(MainDataGetProvider()).mainData['setting'][0]['setting_year'];
 
-import 'package:empty_widget/empty_widget.dart';
+import 'package:empty_widget_pro/empty_widget_pro.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';

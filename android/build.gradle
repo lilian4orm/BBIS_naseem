@@ -1,5 +1,5 @@
 allprojects {
-    ext.kotlin_version = '2.0.10'
+    ext.kotlin_version = '2.1.0'
     repositories {
         google()
         mavenCentral()
@@ -17,9 +17,9 @@ allprojects {
     }
 }
 ext {
-    kotlinVersion = findProperty('android.kotlinVersion') ?: '2.0.10'
-    compileSdkVersion   = 34
-    targetSdkVersion    = 34
+    kotlinVersion = findProperty('android.kotlinVersion') ?: '2.1.0'
+    compileSdkVersion   = 35
+    targetSdkVersion    = 35
     appCompatVersion    = "1.7.0"
 }
 rootProject.buildDir = "../build"
@@ -38,7 +38,7 @@ subprojects {
 
             def javaVersion = JavaVersion.VERSION_1_8
             android {
-                def androidApiVersion = 34
+                def androidApiVersion = 35
                 compileSdkVersion androidApiVersion
                 defaultConfig {
                     targetSdkVersion androidApiVersion

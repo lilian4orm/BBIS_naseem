@@ -1,7 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:image_gallery_saver/image_gallery_saver.dart';
+import 'package:image_gallery_saver_plus/image_gallery_saver_plus.dart';
 import 'package:get/get.dart';
 import 'package:photo_view/photo_view.dart';
 import 'package:photo_view/photo_view_gallery.dart';
@@ -672,7 +672,7 @@ class _ImageShowSingleState extends State<ImageShowSingle> {
 _saveNetworkImage(String path) async {
   var response =
       await Dio().get(path, options: Options(responseType: ResponseType.bytes));
-  final result = await ImageGallerySaver.saveImage(
+  final result = await ImageGallerySaverPlus.saveImage(
       Uint8List.fromList(response.data),
       quality: 60,
       name: "hello");

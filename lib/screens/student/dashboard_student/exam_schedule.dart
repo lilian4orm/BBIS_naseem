@@ -1,4 +1,4 @@
-import 'package:empty_widget/empty_widget.dart';
+import 'package:empty_widget_pro/empty_widget_pro.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../../api_connection/student/api_degree.dart';
@@ -16,14 +16,12 @@ class ExamSchedule extends StatefulWidget {
 }
 
 class _ExamScheduleState extends State<ExamSchedule> {
-  final MainDataGetProvider _mainDataGetProvider =
-      Get.put(MainDataGetProvider());
+  final MainDataGetProvider _mainDataGetProvider = Get.put(MainDataGetProvider());
   @override
   void initState() {
     Map data = {
       "study_year": _mainDataGetProvider.mainData['setting'][0]['setting_year'],
-      "class_school": _mainDataGetProvider.mainData['account']
-          ['account_division_current']['_id'],
+      "class_school": _mainDataGetProvider.mainData['account']['account_division_current']['_id'],
     };
     DegreeStudentAPI().getExamsSchedule(data);
     super.initState();
@@ -64,15 +62,13 @@ class _ExamScheduleState extends State<ExamSchedule> {
                           decoration: BoxDecoration(
                               color: MyColor.yellow.withOpacity(.2),
                               border: Border.all(color: MyColor.purple),
-                              borderRadius:
-                                  const BorderRadius.all(Radius.circular(10))),
+                              borderRadius: const BorderRadius.all(Radius.circular(10))),
                           child: ExpansionTile(
                             title: Text(
                               val.data[indexes]['exams_name'].toString(),
                               style: const TextStyle(color: MyColor.purple),
                             ),
-                            children:
-                                _children(val.data[indexes]['exams_schedule']),
+                            children: _children(val.data[indexes]['exams_schedule']),
                           ),
                         );
                       });
@@ -92,40 +88,28 @@ class _ExamScheduleState extends State<ExamSchedule> {
               flex: 2,
               child: Text(
                 'today'.tr,
-                style: const TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 14,
-                    color: MyColor.purple),
+                style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 14, color: MyColor.purple),
               ),
             ),
             Expanded(
               flex: 3,
               child: Text(
                 'date'.tr,
-                style: const TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 14,
-                    color: MyColor.purple),
+                style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 14, color: MyColor.purple),
               ),
             ),
             Expanded(
               flex: 2,
               child: Text(
                 'subject'.tr,
-                style: const TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 14,
-                    color: MyColor.purple),
+                style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 14, color: MyColor.purple),
               ),
             ),
             Expanded(
               flex: 2,
               child: Text(
                 'details'.tr,
-                style: const TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 14,
-                    color: MyColor.purple),
+                style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 14, color: MyColor.purple),
                 textAlign: TextAlign.center,
               ),
             ),
@@ -137,20 +121,15 @@ class _ExamScheduleState extends State<ExamSchedule> {
       widget.add(GestureDetector(
         onTap: () {
           if (_d['schedule_exam_description'] != null) {
-            Get.defaultDialog(
-                title: 'examS'.tr,
-                content: Text(_d['schedule_exam_description'].toString()));
+            Get.defaultDialog(title: 'examS'.tr, content: Text(_d['schedule_exam_description'].toString()));
           }
         },
         child: Container(
           decoration: const BoxDecoration(
-            borderRadius: BorderRadius.only(
-                bottomLeft: Radius.circular(10),
-                bottomRight: Radius.circular(10)),
+            borderRadius: BorderRadius.only(bottomLeft: Radius.circular(10), bottomRight: Radius.circular(10)),
             color: MyColor.white0,
           ),
-          padding:
-              const EdgeInsets.only(right: 16, left: 8, top: 10, bottom: 10),
+          padding: const EdgeInsets.only(right: 16, left: 8, top: 10, bottom: 10),
           child: Row(
             children: [
               Expanded(
