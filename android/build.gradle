@@ -18,8 +18,8 @@ allprojects {
 }
 ext {
     kotlinVersion = findProperty('android.kotlinVersion') ?: '2.1.0'
-    compileSdkVersion   = 35
-    targetSdkVersion    = 35
+    compileSdkVersion   = 36
+    targetSdkVersion    = 36
     appCompatVersion    = "1.7.0"
 }
 rootProject.buildDir = "../build"
