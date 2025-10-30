@@ -19,9 +19,17 @@
   "source_files": "Classes/**/*",
   "public_header_files": "Classes/**/*.h",
   "dependencies": {
-    "Flutter": [],
-    "Mantle": [],
-    "SDWebImage": [],
-    "SDWebImageWebPCoder": []
+    "Flutter": [
+
+    ],
+    "Mantle": [
+
+    ],
+    "SDWebImage": [
+
+    ],
+    "SDWebImageWebPCoder": [
+
+    ]
   }
 }

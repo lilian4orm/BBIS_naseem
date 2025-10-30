@@ -17,12 +17,16 @@
   "public_header_files": "just_waveform/Sources/just_waveform/include/**/*.h",
   "ios": {
     "dependencies": {
-      "Flutter": []
+      "Flutter": [
+
+      ]
     }
   },
   "osx": {
     "dependencies": {
-      "FlutterMacOS": []
+      "FlutterMacOS": [
+
+      ]
     }
   },
   "platforms": {

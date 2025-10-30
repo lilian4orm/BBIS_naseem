@@ -15,7 +15,9 @@
   },
   "source_files": "Classes/**/*",
   "dependencies": {
-    "Flutter": []
+    "Flutter": [
+
+    ]
   },
   "platforms": {
     "ios": "8.0"

@@ -174,11 +174,6 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>background_location.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
 		<key>device_info_plus-device_info_plus_privacy.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -279,7 +274,7 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>image_gallery_saver.xcscheme</key>
+		<key>image_gallery_saver_plus.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
