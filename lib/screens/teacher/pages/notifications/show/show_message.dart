@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../../../../../api_connection/teacher/api_notification.dart';
-import '../../../../../static_files/my_appbar.dart';
+import '../../../../../provider/auth_provider.dart';
+import '../../../../../screens/teacher/teacher_home.dart';
 import '../../../../../static_files/my_color.dart';
 import '../../../../../static_files/my_image_grid.dart';
 import '../../../../../static_files/my_pdf_viewr.dart';
@@ -33,9 +34,68 @@ class _ShowMessageState extends State<ShowMessage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: myAppBar(widget.data['notifications_title'].toString()),
+      appBar: AppBar(
+        title: Text(
+          widget.data['notifications_title'].toString(),
+          style: const TextStyle(
+            color: MyColor.purple,
+            fontSize: 18,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        backgroundColor: MyColor.yellow,
+        centerTitle: true,
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back, color: MyColor.purple),
+          onPressed: () {
+            final userData = Get.find<TokenProvider>().userData;
+            if (userData != null) {
+              Get.offAll(() => HomePageTeacher(userData: userData));
+            } else {
+              Get.back();
+            }
+          },
+        ),
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.home, color: MyColor.purple),
+            onPressed: () {
+              final userData = Get.find<TokenProvider>().userData;
+              if (userData != null) {
+                Get.offAll(() => HomePageTeacher(userData: userData));
+              } else {
+                Get.back();
+              }
+            },
+          ),
+        ],
+      ),
       body: ListView(
         children: [
+          if (widget.data['notifications_description'] != null)
+            Container(
+              margin: const EdgeInsets.all(20),
+              padding: const EdgeInsets.all(15),
+              decoration: BoxDecoration(
+                color: MyColor.white0,
+                borderRadius: BorderRadius.circular(10),
+                boxShadow: [
+                  BoxShadow(
+                    color: MyColor.purple.withOpacity(0.1),
+                    blurRadius: 5,
+                    offset: const Offset(0, 2),
+                  ),
+                ],
+              ),
+              child: Text(
+                widget.data['notifications_description'].toString(),
+                style: const TextStyle(
+                  fontSize: 16,
+                  color: MyColor.purple,
+                  height: 1.5,
+                ),
+              ),
+            ),
           widget.data['notifications_imgs'] ==null? Container(height: 10):
           Padding(
             padding: const EdgeInsets.all(10),

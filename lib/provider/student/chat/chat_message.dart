@@ -27,6 +27,14 @@ class ChatMessageStudentProvider extends GetxController {
   }
 
   void addSingleChat(Map data) {
+    // Prevent duplicates by chat_uuid if present
+    try {
+      final uuid = data['chat_uuid'];
+      if (uuid != null) {
+        final exists = chat.any((item) => item['chat_uuid'] == uuid);
+        if (exists) return;
+      }
+    } catch (_) {}
     if (data['chat_from'] == currentChatReciver ||
         data['chat_from'] == currentChatSender) {
       chat.insert(0, data);

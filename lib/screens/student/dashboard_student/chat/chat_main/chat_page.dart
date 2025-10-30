@@ -65,6 +65,9 @@ class _ChatPageState extends State<ChatPage> {
         widget.userInfo['_id'];
     Get.put(ChatMessageStudentProvider()).currentChatSender =
         dataProvider!['_id'];
+    // Ensure chat list is loaded when opening directly from notifications
+    Get.put(ChatMessageStudentProvider()).clear();
+    _getChatOfStudent();
     _checkUserOnline();
     _scrollController.addListener(() {
       if (_scrollController.position.pixels ==
@@ -94,6 +97,7 @@ class _ChatPageState extends State<ChatPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: true,
       appBar: AppBar(
         title: Row(
           mainAxisAlignment: MainAxisAlignment.start,
@@ -137,11 +141,17 @@ class _ChatPageState extends State<ChatPage> {
           ],
         ),
       ),
-      body: Column(
+      body: SafeArea(
+        top: false,
+        left: false,
+        right: false,
+        bottom: true,
+        child: Column(
         children: [
           Expanded(
             child: GetBuilder<ChatMessageStudentProvider>(builder: (val) {
               return Scaffold(
+                resizeToAvoidBottomInset: true,
                 body: ListView.builder(
                     // separatorBuilder: (BuildContext context, int index) {
                     //   return DateChip(
@@ -152,6 +162,12 @@ class _ChatPageState extends State<ChatPage> {
                     itemCount: val.chat.length,
                     controller: _scrollController,
                     reverse: true,
+                    padding: EdgeInsets.only(
+                      bottom: 8 + MediaQuery.of(context).padding.bottom,
+                      left: 0,
+                      right: 0,
+                      top: 0,
+                    ),
                     itemBuilder: (BuildContext context, int index) {
                       return chatMessageBubbles(val.chat[index], index, player);
                     }),
@@ -175,7 +191,12 @@ class _ChatPageState extends State<ChatPage> {
           widget.isChatOpen
               ? _bottomContainer()
               : Padding(
-                  padding: const EdgeInsets.all(8.0),
+                  padding: EdgeInsets.only(
+                    left: 8,
+                    right: 8,
+                    top: 8,
+                    bottom: 8 + MediaQuery.of(context).padding.bottom,
+                  ),
                   child: Container(
                       width: double.infinity,
                       height: 50,
@@ -210,7 +231,7 @@ class _ChatPageState extends State<ChatPage> {
                       )),
                 )
         ],
-      ),
+      )),
     );
   }
 
@@ -218,7 +239,17 @@ class _ChatPageState extends State<ChatPage> {
 
   _bottomContainer() {
     return GetBuilder<ChatMessageBottomBarStudentProvider>(builder: (val) {
-      return Container(
+      final double kb = MediaQuery.of(context).viewInsets.bottom;
+      final double sys = MediaQuery.of(context).padding.bottom;
+      final double bottomPad = (kb > 0 ? kb : sys) + 4;
+      return SafeArea(
+        top: false,
+        left: false,
+        right: false,
+        bottom: true,
+        child: Padding(
+          padding: EdgeInsets.only(bottom: bottomPad),
+          child: Container(
         padding: const EdgeInsets.fromLTRB(10, 10, 10, 10),
         child: val.isRecording
             ? Row(
@@ -349,6 +380,8 @@ class _ChatPageState extends State<ChatPage> {
                         ),
                 ],
               ),
+              ),
+          ),
       );
     });
   }

@@ -10,7 +10,6 @@
 #endif
 #endif
 
-#import "SyncfusionFlutterPdfViewerPlugin.h"
 
 FOUNDATION_EXPORT double syncfusion_flutter_pdfviewerVersionNumber;
 FOUNDATION_EXPORT const unsigned char syncfusion_flutter_pdfviewerVersionString[];

@@ -7,7 +7,12 @@ class ChatStudentListProvider extends GetxController {
   final student = <dynamic>[].obs;
   List data = [];
   String contentUrl = '';
+  bool isFetching = false;
+  int _requestSeq = 0;
   void getStudent(page, classesId, studyYear, searchKeyword) {
+    if (isFetching) return;
+    isFetching = true;
+    final int seq = ++_requestSeq;
     Map data = {
       "class_school": classesId,
       "study_year": studyYear,
@@ -16,6 +21,7 @@ class ChatStudentListProvider extends GetxController {
     };
 
     ChatStudentListAPI().getStudentList(data).then((res) {
+      if (seq != _requestSeq) return; // ignore stale responses
       EasyLoading.dismiss();
       if (!res['error']) {
         if (page == 0) {
@@ -32,6 +38,8 @@ class ChatStudentListProvider extends GetxController {
       } else {
         EasyLoading.showError(res['message'].toString());
       }
+    }).whenComplete(() {
+      isFetching = false;
     });
   }
 

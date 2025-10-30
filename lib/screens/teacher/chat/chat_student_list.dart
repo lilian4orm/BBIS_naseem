@@ -63,7 +63,8 @@ class _ChatStudentListState extends State<ChatStudentList> {
     _getStudentList();
     _scrollController.addListener(() {
       if (_scrollController.position.pixels ==
-          _scrollController.position.maxScrollExtent) {
+              _scrollController.position.maxScrollExtent &&
+          !chatStudentProvider.isFetching) {
         page++;
         _getStudentList();
       }

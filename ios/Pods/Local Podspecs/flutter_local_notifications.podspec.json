@@ -17,9 +17,7 @@
   "source_files": "Classes/**/*",
   "public_header_files": "Classes/**/*.h",
   "dependencies": {
-    "Flutter": [
-
-    ]
+    "Flutter": []
   },
   "resource_bundles": {
     "flutter_local_notifications_privacy": [

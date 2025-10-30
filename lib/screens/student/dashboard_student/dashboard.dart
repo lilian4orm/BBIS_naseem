@@ -43,7 +43,7 @@ class DashboardState extends State<Dashboard>
 
   _getStudentInfo() async {
     Map data = {
-      "study_year": Get.put(MainDataGetProvider()).mainData['setting'][0]
+      "study_year": Get.put(MainDataGetProvider()).mainData['setting'] [0]
           ['setting_year'],
       "page": 0,
       "class_school": Get.put(MainDataGetProvider()).mainData['account']

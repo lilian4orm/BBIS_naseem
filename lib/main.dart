@@ -20,6 +20,7 @@ import 'static_files/my_url.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 //parse
+@pragma('vm:entry-point')
 Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
   await Firebase.initializeApp();
 }

@@ -8,7 +8,12 @@ class ChatTeacherListProvider extends GetxController {
   String contentUrl = '';
   List data = [];
   RxBool isChatOpen = false.obs;
+  bool isFetching = false;
+  int _requestSeq = 0;
   void getStudent(page, classesId, studyYear, searchKeyword) {
+    if (isFetching) return;
+    isFetching = true;
+    final int seq = ++_requestSeq;
     Logger().i(searchKeyword);
     Map data = {
       "class_school": classesId,
@@ -18,6 +23,7 @@ class ChatTeacherListProvider extends GetxController {
     };
 
     ChatTeacherListAPI().getStudentList(data).then((res) {
+      if (seq != _requestSeq) return; // ignore stale responses
       EasyLoading.dismiss();
       if (!res['error']) {
         if (res['is_chat_open'] is bool) {
@@ -39,6 +45,8 @@ class ChatTeacherListProvider extends GetxController {
       } else {
         EasyLoading.showError(res['message'].toString());
       }
+    }).whenComplete(() {
+      isFetching = false;
     });
   }
 
