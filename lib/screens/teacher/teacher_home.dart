@@ -1,6 +1,12 @@
+import 'package:BBInaseem/local_database/models/account.dart';
+import 'package:BBInaseem/provider/accounts_provider.dart';
 import 'package:BBInaseem/screens/auth/accounts_screen.dart';
+import 'package:BBInaseem/screens/auth/login_page.dart';
+import 'package:BBInaseem/static_files/my_color.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
+import 'package:restart_app/restart_app.dart';
 
 import '../../api_connection/auth_connection.dart';
 import '../../api_connection/student/api_dashboard_data.dart';
@@ -30,7 +36,8 @@ class HomePageTeacher extends StatefulWidget {
 class _HomePageTeacherState extends State<HomePageTeacher> {
   final Map? dataProvider = Get.put(TokenProvider()).userData;
   final LatestNewsProvider latestNewsProvider = Get.put(LatestNewsProvider());
-
+  final AccountProvider accountProvider = Get.put(AccountProvider());
+  TokenProvider get tokenProvider => Get.put(TokenProvider());
   @override
   void initState() {
     super.initState();
@@ -103,6 +110,42 @@ class _HomePageTeacherState extends State<HomePageTeacher> {
     ];
   }
 
+  onOtherAccountFound(Map<String, dynamic> account) async {
+    await accountProvider.onClickAccount(account);
+    tokenProvider.addToken(account);
+    bool isIOS = Theme.of(context).platform == TargetPlatform.iOS;
+    if (!isIOS) {
+      Restart.restartApp();
+    } else {
+      // ignore: use_build_context_synchronously
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: Text('confirm'.tr),
+            content: Text(
+              'reloadApp'.tr,
+            ),
+            actions: [
+              TextButton(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+                child: Text('cancel'.tr),
+              ),
+              TextButton(
+                onPressed: () {
+                  Restart.restartApp();
+                },
+                child: Text('confirm'.tr),
+              ),
+            ],
+          );
+        },
+      );
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -112,10 +155,55 @@ class _HomePageTeacherState extends State<HomePageTeacher> {
           builder: (_) => CustomScrollView(
             slivers: [
               TeacherAppBar(
-                userName: widget.userData['account_name']?.toString() ?? '',
-                onVersionTap: () => DialogHelpers.showVersionDialog(context),
-                onLogoutTap: () => DialogHelpers.showLogoutDialog(context),
-              ),
+                  userName: widget.userData['account_name']?.toString() ?? '',
+                  onVersionTap: () => DialogHelpers.showVersionDialog(context),
+                  onLogoutTap: () {
+                    Get.defaultDialog(
+                        title: 'logout'.tr,
+                        content: Text(
+                          'confirmLogout'.tr,
+                        ),
+                        cancel: MaterialButton(
+                          color: MyColor.purple,
+                          onPressed: () => Get.back(),
+                          child: Text(
+                            "cancel".tr,
+                            style: const TextStyle(color: MyColor.yellow),
+                          ),
+                        ),
+                        confirm: MaterialButton(
+                            color: MyColor.red,
+                            child: Text(
+                              "confirm".tr,
+                              style: const TextStyle(color: MyColor.white1),
+                            ),
+                            onPressed: () {
+                              Auth().loginOut().then((res) async {
+                                if (res['error'] == false) {
+                                  Account accountToDelete = Account.fromMap(
+                                      Map<String, dynamic>.from(
+                                          widget.userData));
+
+                                  await accountProvider
+                                      .deleteAccount(accountToDelete);
+
+                                  if (accountProvider.accounts.firstOrNull !=
+                                      null) {
+                                    onOtherAccountFound(
+                                        accountProvider.accounts.first.toMap());
+                                  } else {
+                                    Get.offAll(() => const LoginPage());
+
+                                    EasyLoading.showSuccess(
+                                        res['message'].toString());
+                                  }
+                                } else {
+                                  EasyLoading.showError(
+                                      res['message'].toString());
+                                }
+                              });
+                            }));
+                  }),
               const SliverToBoxAdapter(
                 child: LatestNewsSection(),
               ),

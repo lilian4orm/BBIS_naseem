@@ -1,3 +1,8 @@
+import 'package:BBInaseem/provider/accounts_provider.dart';
+import 'package:BBInaseem/provider/locale_controller.dart';
+import 'package:BBInaseem/screens/auth/accounts_screen.dart';
+import 'package:BBInaseem/screens/auth/login_page.dart';
+import 'package:BBInaseem/screens/student/profile/edit_profile.dart';
 import 'package:auto_size_text_pk/auto_size_text_pk.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:dio/dio.dart' as dio;
@@ -11,12 +16,8 @@ import 'package:get_storage/get_storage.dart';
 import 'package:http_parser/http_parser.dart';
 import 'package:line_icons/line_icons.dart';
 import 'package:path/path.dart' as p;
-import 'package:BBInaseem/provider/locale_controller.dart';
 import 'package:restart_app/restart_app.dart';
-import 'package:BBInaseem/provider/accounts_provider.dart';
-import 'package:BBInaseem/screens/auth/accounts_screen.dart';
-import 'package:BBInaseem/screens/auth/login_page.dart';
-import 'package:BBInaseem/screens/student/profile/edit_profile.dart';
+
 import '../../../api_connection/auth_connection.dart';
 import '../../../api_connection/student/api_profile.dart';
 import '../../../local_database/models/account.dart';
