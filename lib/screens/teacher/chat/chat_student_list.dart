@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
+
 import '../../../provider/auth_provider.dart';
 import '../../../provider/teacher/chat/chat_all_list_items.dart';
 import '../../../provider/teacher/chat/chat_message.dart';
@@ -57,24 +58,27 @@ class _ChatStudentListState extends State<ChatStudentList> {
 
   @override
   void initState() {
+    super.initState();
     for (Map _data in _classes) {
       _classesId.add(_data['_id'].toString());
     }
     _getStudentList();
     _scrollController.addListener(() {
-      if (_scrollController.position.pixels ==
-          _scrollController.position.maxScrollExtent) {
-        page++;
-        _getStudentList();
+      if (_scrollController.position.pixels >=
+          _scrollController.position.maxScrollExtent - 200) {
+        // Only load more if not already loading and there's more data
+        if (!chatStudentProvider.isLoading && chatStudentProvider.hasMore) {
+          page++;
+          _getStudentList();
+        }
       }
     });
-    super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
     return GetBuilder<ChatStudentListProvider>(builder: (val) {
-      return val.student.isEmpty && val.isLoading
+      return val.student.toList().isEmpty && val.isLoading
           ? Center(
               child: loadingChat(),
             )
@@ -124,83 +128,144 @@ class _ChatStudentListState extends State<ChatStudentList> {
                 ),
                 Expanded(
                   child: ListView.builder(
-                      itemBuilder: (BuildContext context, int index) =>
-                          _student(val.student[index], val.contentUrl),
-                      controller: _scrollController,
-                      padding: const EdgeInsets.only(top: 10),
-                      //separatorBuilder: (BuildContext context, int index)=>const Divider(),
-                      itemCount: val.student.length),
+                    itemBuilder: (BuildContext context, int index) {
+                      if (index == val.student.toList().length &&
+                          val.isLoading) {
+                        return const Center(
+                          child: Padding(
+                            padding: EdgeInsets.symmetric(vertical: 16),
+                            child: CircularProgressIndicator(),
+                          ),
+                        );
+                      }
+                      if (index < val.student.toList().length) {
+                        return _student(
+                            val.student.toList()[index], val.contentUrl);
+                      }
+                      return const SizedBox.shrink();
+                    },
+                    controller: _scrollController,
+                    padding: const EdgeInsets.only(top: 10),
+                    itemCount:
+                        val.student.toList().length + (val.isLoading ? 1 : 0),
+                  ),
                 ),
               ],
             );
     });
   }
 
-  _student(Map data, String contentUrl) {
-    return ListTile(
-      title: Text(
-        data['account_name'].toString(),
-        style: const TextStyle(fontSize: 14),
+  Widget _student(Map data, String contentUrl) {
+    return Container(
+      margin: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+      padding: const EdgeInsets.all(16),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(16),
+        border: Border.all(
+          color: Colors.grey.shade300,
+          width: 1.0,
+        ),
       ),
-      subtitle: data['chats']['data'].length == 0
-          ? null
-          : Row(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Flexible(
-                  child: Container(
-                    padding: const EdgeInsets.fromLTRB(4, 4, 4, 4),
-                    decoration: data['chats']['data'][0]
-                            ['chat_message_is_deleted']
-                        ? BoxDecoration(
-                            borderRadius: BorderRadius.circular(10),
-                            border: Border.all(
-                              width: 1.0,
-                              color: Colors.grey.shade300,
-                            ),
-                          )
-                        : null,
-                    child: Text(
-                        data['chats']['data'][0]['chat_message_is_deleted']
-                            ? 'msgDeleted'.tr
-                            : data['chats']['data'][0]['chat_message'] ??
-                                'fileSended'.tr,
-                        style: TextStyle(
-                            fontSize: 12,
-                            fontWeight: data['chats']['data'][0]
-                                    ['chat_message_isRead']
-                                ? FontWeight.normal
-                                : FontWeight.bold),
-                        maxLines: 1,
-                        overflow: TextOverflow.ellipsis),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          ListTile(
+            contentPadding: EdgeInsets.zero,
+            title: Text(
+              data['account_name'].toString(),
+              style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
+            ),
+            subtitle: data['chats']['data'].length == 0
+                ? null
+                : Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Flexible(
+                        child: Container(
+                          padding: const EdgeInsets.fromLTRB(4, 4, 4, 4),
+                          decoration: data['chats']['data'][0]
+                                  ['chat_message_is_deleted']
+                              ? BoxDecoration(
+                                  borderRadius: BorderRadius.circular(10),
+                                  border: Border.all(
+                                    width: 1.0,
+                                    color: Colors.grey.shade300,
+                                  ),
+                                )
+                              : null,
+                          child: Text(
+                              data['chats']['data'][0]
+                                      ['chat_message_is_deleted']
+                                  ? 'msgDeleted'.tr
+                                  : data['chats']['data'][0]['chat_message'] ??
+                                      'fileSended'.tr,
+                              style: TextStyle(
+                                  fontSize: 12,
+                                  fontWeight: data['chats']['data'][0]
+                                          ['chat_message_isRead']
+                                      ? FontWeight.normal
+                                      : FontWeight.bold),
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis),
+                        ),
+                      ),
+                    ],
                   ),
-                ),
+            leading: profileImg(contentUrl, data['account_img']),
+            trailing: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                if (data['chats']['data'].isNotEmpty)
+                  _timeText(data['chats']['data'][0]['created_at']),
+                if (data['chats']['countUnRead'] > 0)
+                  _messageUnRead(data['chats']['countUnRead']),
               ],
             ),
-      leading: profileImg(contentUrl, data['account_img']),
-      trailing: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          if (data['chats']['data'].isNotEmpty)
-            _timeText(data['chats']['data'][0]['created_at']),
-          if (data['chats']['countUnRead'] > 0)
-            _messageUnRead(data['chats']['countUnRead']),
+            onTap: () async {
+              searchController.clear();
+              Get.put(ChatMessageProvider()).clear();
+              Get.put(ChatMessageProvider()).addListChat(data['chats']['data']);
+              await Get.to(
+                  () => ChatPage(userInfo: data, contentUrl: contentUrl));
+              Get.put(ChatSocketProvider())
+                  .socket
+                  .emit('readMessage', data['_id']);
+              Get.put(ChatMessageProvider()).isShow(false);
+              page = 0;
+              _getStudentList();
+            },
+            onLongPress: () {
+              _showBottomSheet(data, context);
+            },
+          ),
+          Wrap(
+            children: [
+              Container(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(12),
+                  color: Colors.grey.shade200,
+                ),
+                child: Text(data['class_name']),
+              ),
+              const SizedBox(
+                width: 8,
+              ),
+              Container(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(12),
+                  color: Colors.grey.shade200,
+                ),
+                child: Text(data['section_name']),
+              )
+            ],
+          )
         ],
       ),
-      onTap: () async {
-        searchController.clear();
-        Get.put(ChatMessageProvider()).clear();
-        Get.put(ChatMessageProvider()).addListChat(data['chats']['data']);
-        await Get.to(() => ChatPage(userInfo: data, contentUrl: contentUrl));
-        Get.put(ChatSocketProvider()).socket.emit('readMessage', data['_id']);
-        Get.put(ChatMessageProvider()).isShow(false);
-        page = 0;
-        _getStudentList();
-      },
-      onLongPress: () {
-        _showBottomSheet(data, context);
-      },
     );
   }
 }

@@ -2214,26 +2214,6 @@ SOFTWARE.
 		</dict>
 		<dict>
 			<key>FooterText</key>
-			<string>opyright 2019 Ali Almoullim
-
-Licensed under the Apache License, Version 2.0 (the "License");
-you may not use this file except in compliance with the License.
-You may obtain a copy of the License at
-
-    http://www.apache.org/licenses/LICENSE-2.0
-
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS,
-WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-See the License for the specific language governing permissions and
-limitations under the License.</string>
-			<key>Title</key>
-			<string>background_location</string>
-			<key>Type</key>
-			<string>PSGroupSpecifier</string>
-		</dict>
-		<dict>
-			<key>FooterText</key>
 			<string>Copyright 2017 The Chromium Authors. All rights reserved.
 
 Redistribution and use in source and binary forms, with or without
@@ -2840,7 +2820,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 			<key>FooterText</key>
 			<string>MIT License
 
-Copyright (c) [2023] [zaihui]
+Copyright (c) [2024]
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -2861,7 +2841,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 </string>
 			<key>Title</key>
-			<string>image_gallery_saver</string>
+			<string>image_gallery_saver_plus</string>
 			<key>Type</key>
 			<string>PSGroupSpecifier</string>
 		</dict>
@@ -3754,17 +3734,17 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		</dict>
 		<dict>
 			<key>FooterText</key>
-			<string>Syncfusion License
+			<string>Syncfusion&lt;sup&gt;&amp;reg;&lt;/sup&gt; License
 
-Syncfusion Flutter PDF Viewer package is available under the Syncfusion Essential Studio program, and can be licensed either under the Syncfusion Community License Program or the Syncfusion commercial license.
+Syncfusion&lt;sup&gt;&amp;reg;&lt;/sup&gt; Flutter PDF Viewer package is available under the Syncfusion&lt;sup&gt;&amp;reg;&lt;/sup&gt; Essential Studio&lt;sup&gt;&amp;reg;&lt;/sup&gt; program, and can be licensed either under the Syncfusion&lt;sup&gt;&amp;reg;&lt;/sup&gt; Community License Program or the Syncfusion&lt;sup&gt;&amp;reg;&lt;/sup&gt; commercial license.
 
-To be qualified for the Syncfusion Community License Program you must have a gross revenue of less than one (1) million U.S. dollars ($1,000,000.00 USD) per year and have less than five (5) developers in your organization, and agree to be bound by Syncfusion’s terms and conditions.
+To be qualified for the Syncfusion&lt;sup&gt;&amp;reg;&lt;/sup&gt; Community License Program you must have a gross revenue of less than one (1) million U.S. dollars ($1,000,000.00 USD) per year and have less than five (5) developers in your organization, and agree to be bound by the Syncfusion&lt;sup&gt;&amp;reg;&lt;/sup&gt; terms and conditions.
 
 Customers who do not qualify for the community license can contact sales@syncfusion.com for commercial licensing options.
 
-Under no circumstances can you use this product without (1) either a Community License or a commercial license and (2) without agreeing and abiding by Syncfusion’s license containing all terms and conditions.
+Under no circumstances can you use this product without (1) either a Community License or a commercial license and (2) without agreeing and abiding by the Syncfusion&lt;sup&gt;&amp;reg;&lt;/sup&gt; license containing all terms and conditions.
 
-The Syncfusion license that contains the terms and conditions can be found at
+The Syncfusion&lt;sup&gt;&amp;reg;&lt;/sup&gt; license that contains the terms and conditions can be found at
 https://www.syncfusion.com/content/downloads/syncfusion_license.pdf</string>
 			<key>Title</key>
 			<string>syncfusion_flutter_pdfviewer</string>

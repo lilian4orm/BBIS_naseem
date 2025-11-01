@@ -66,7 +66,7 @@ class _LoginPageState extends State<LoginPage> {
       "auth_lat": authData?['lat']?.toString() ?? '', // Add null check
       "auth_phone_details": await getDeviceInfo(),
       "auth_phone_id": await getPhoneId(),
-      "auth_firebase": await FirebaseMessaging.instance.getToken()
+      "auth_firebase": (await _getFcmToken())
     };
 
     if (_formCheck.currentState!.validate() && authData != null) {
@@ -122,6 +122,14 @@ class _LoginPageState extends State<LoginPage> {
       _btnController.reset();
     } else {
       _btnController.reset();
+    }
+  }
+
+  Future<String?> _getFcmToken() async {
+    try {
+      return await FirebaseMessaging.instance.getToken();
+    } catch (e) {
+      return null;
     }
   }
 

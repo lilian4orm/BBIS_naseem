@@ -16,20 +16,21 @@ followTopics() async {
   String id =
       Get.put(MainDataGetProvider()).mainData['account']['school']['_id'];
   String type = Get.put(MainDataGetProvider()).type;
-
-  FirebaseMessaging messaging = FirebaseMessaging.instance;
-  await messaging.subscribeToTopic('school_$id');
-  if (type == 'student') {
-    await messaging.subscribeToTopic('all_students_$id');
-    await messaging.unsubscribeFromTopic('all_teachers_$id');
-    await messaging.unsubscribeFromTopic('all_drivers_$id');
-  } else if (type == 'teacher') {
-    await messaging.subscribeToTopic('all_teachers_$id');
-    await messaging.unsubscribeFromTopic('all_students_$id');
-    await messaging.unsubscribeFromTopic('all_drivers_$id');
-  } else if (type == 'driver') {
-    await messaging.subscribeToTopic('all_drivers_$id');
-    await messaging.unsubscribeFromTopic('all_students_$id');
-    await messaging.unsubscribeFromTopic('all_teachers_$id');
-  }
+  try {
+    FirebaseMessaging messaging = FirebaseMessaging.instance;
+    await messaging.subscribeToTopic('school_$id');
+    if (type == 'student') {
+      await messaging.subscribeToTopic('all_students_$id');
+      await messaging.unsubscribeFromTopic('all_teachers_$id');
+      await messaging.unsubscribeFromTopic('all_drivers_$id');
+    } else if (type == 'teacher') {
+      await messaging.subscribeToTopic('all_teachers_$id');
+      await messaging.unsubscribeFromTopic('all_students_$id');
+      await messaging.unsubscribeFromTopic('all_drivers_$id');
+    } else if (type == 'driver') {
+      await messaging.subscribeToTopic('all_drivers_$id');
+      await messaging.unsubscribeFromTopic('all_students_$id');
+      await messaging.unsubscribeFromTopic('all_teachers_$id');
+    }
+  } catch (e) {}
 }

@@ -7,7 +7,18 @@ class ChatStudentListProvider extends GetxController {
   final student = <dynamic>[].obs;
   List data = [];
   String contentUrl = '';
+  bool isLoading = true;
+  bool hasMore = true;
+
   void getStudent(page, classesId, studyYear, searchKeyword) {
+    // Prevent multiple simultaneous calls
+    if (isLoading && page != 0) return;
+
+    isLoading = true;
+    if (page != 0) {
+      update(); // Update UI to show loading indicator
+    }
+
     Map data = {
       "class_school": classesId,
       "study_year": studyYear,
@@ -17,21 +28,30 @@ class ChatStudentListProvider extends GetxController {
 
     ChatStudentListAPI().getStudentList(data).then((res) {
       EasyLoading.dismiss();
+      isLoading = false;
+
       if (!res['error']) {
         if (page == 0) {
           clear();
           changeContentUrl(res["content_url"]);
-          changeLoading(false);
           student.value = res['results'];
+          hasMore = res['results'].length > 0;
         } else {
-          List temp = student;
+          List temp = student.toList();
           temp.addAll(res['results']);
           student.value = temp;
+          // Check if there's more data
+          hasMore = res['results'].length > 0;
         }
         update();
       } else {
         EasyLoading.showError(res['message'].toString());
+        update();
       }
+    }).catchError((error) {
+      EasyLoading.dismiss();
+      isLoading = false;
+      update();
     });
   }
 
@@ -39,7 +59,6 @@ class ChatStudentListProvider extends GetxController {
     contentUrl = contentUrlx;
   }
 
-  bool isLoading = true;
   void changeLoading(bool isLoadingx) {
     isLoading = isLoadingx;
     update();
@@ -47,8 +66,9 @@ class ChatStudentListProvider extends GetxController {
 
   void clear() {
     student.value = [];
-    update();
+    hasMore = true;
     data.clear();
+    update();
   }
 }
 

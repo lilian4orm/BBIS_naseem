@@ -1,10 +1,11 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:line_icons/line_icons.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+
 import '../provider/auth_provider.dart';
 import '../provider/teacher/chat/chat_all_list_items.dart';
 import '../provider/teacher/chat/chat_socket.dart';
@@ -24,7 +25,7 @@ Widget profileImg(String contentUrl, String? img) {
     return CircleAvatar(
       backgroundColor: Colors.white,
       child: SizedBox(
-          width: 26,
+          width: 36,
           child: Image.asset("assets/img/logo.png", fit: BoxFit.fill)),
     );
   } else {

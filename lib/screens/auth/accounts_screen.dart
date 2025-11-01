@@ -1,10 +1,10 @@
-import 'package:restart_app/restart_app.dart';
 import 'package:BBInaseem/provider/accounts_provider.dart';
 import 'package:BBInaseem/provider/auth_provider.dart';
 import 'package:BBInaseem/screens/auth/login_page.dart';
 import 'package:BBInaseem/static_files/my_color.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:restart_app/restart_app.dart';
 
 class AccountsScreen extends StatefulWidget {
   const AccountsScreen({super.key});
@@ -77,7 +77,7 @@ class _AccountsScreenState extends State<AccountsScreen> {
             elevation: 0,
             actions: [
               Padding(
-                padding: const EdgeInsets.only(left: 16),
+                padding: const EdgeInsets.only(left: 16, right: 16),
                 child: GestureDetector(
                   onTap: () {
                     Get.to(() => const LoginPage());

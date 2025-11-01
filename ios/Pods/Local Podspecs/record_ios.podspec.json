@@ -16,9 +16,7 @@
   "source_files": "record_ios/Sources/record_ios/**/*.swift",
   "swift_versions": "5.0",
   "dependencies": {
-    "Flutter": [
-
-    ]
+    "Flutter": []
   },
   "platforms": {
     "ios": "12.0"
