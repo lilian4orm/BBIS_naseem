@@ -8,6 +8,7 @@ import 'package:get/get.dart';
 const String socketURLSchool = "https://api.lm-uat.com/";
 
 const String schoolURL = "https://api.lm-uat.com/api/mobile/";
+const String paymentRedirectURL = "https://bbis-iq.com";
 
 String mainApi = schoolURL;
 String socketURL = socketURLSchool;

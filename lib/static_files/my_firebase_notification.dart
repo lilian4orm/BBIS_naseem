@@ -1,9 +1,3 @@
-import 'package:firebase_messaging/firebase_messaging.dart';
-import 'package:flutter/foundation.dart';
-import 'package:flutter_local_notifications/flutter_local_notifications.dart';
-import 'package:get/get.dart';
-import 'package:get_storage/get_storage.dart';
-import 'package:logger/logger.dart';
 import 'package:BBInaseem/api_connection/auth_connection.dart';
 import 'package:BBInaseem/init_data.dart';
 import 'package:BBInaseem/screens/student/dashboard_student/chat/chat_main/chat_main.dart'
@@ -11,6 +5,12 @@ import 'package:BBInaseem/screens/student/dashboard_student/chat/chat_main/chat_
 import 'package:BBInaseem/screens/student/dashboard_student/student_attend.dart';
 import 'package:BBInaseem/screens/teacher/chat/chat_main/chat_main.dart'
     as teacher;
+import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:flutter/foundation.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
+import 'package:logger/logger.dart';
 
 import '../api_connection/student/api_dashboard_data.dart';
 import '../provider/auth_provider.dart';
@@ -25,7 +25,7 @@ import '../screens/teacher/pages/teacher_weekly_schedule.dart';
 
 class NotificationFirebase {
   initializeCloudMessage() async {
-    FirebaseMessaging messaging = FirebaseMessaging.instance;   
+    FirebaseMessaging messaging = FirebaseMessaging.instance;
     await messaging.requestPermission(
       alert: true,
       announcement: false,
@@ -37,7 +37,9 @@ class NotificationFirebase {
     );
     final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
         FlutterLocalNotificationsPlugin();
-    await messaging.subscribeToTopic('all');
+    try {
+      await messaging.subscribeToTopic('all');
+    } catch (e) {}
     await flutterLocalNotificationsPlugin
         .resolvePlatformSpecificImplementation<
             AndroidFlutterLocalNotificationsPlugin>()

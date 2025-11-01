@@ -119,6 +119,16 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>OrderedSet-OrderedSet_privacy.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>OrderedSet.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-Runner.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -225,6 +235,16 @@
 			<false/>
 		</dict>
 		<key>flutter_image_compress_common.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>flutter_inappwebview_ios-flutter_inappwebview_ios_privacy.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>flutter_inappwebview_ios.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
