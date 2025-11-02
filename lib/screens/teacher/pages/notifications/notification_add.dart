@@ -36,7 +36,7 @@ class _NotificationAddState extends State<NotificationAdd> {
   final TextEditingController _link = TextEditingController();
 
   final MainDataGetProvider _mainDataProvider = Get.put(MainDataGetProvider());
-  final List notificationSubjectType = ['hoWork'.tr, 'tot'.tr, 'dexam'.tr];
+  final List notificationSubjectType = ['واجب بيتي', 'ملخص', 'امتحان يومي'];
 
   ///-------------------------
   String? _notificationType = '';
@@ -58,6 +58,10 @@ class _NotificationAddState extends State<NotificationAdd> {
   List<S2Choice<String>> classes = [];
   List<String> _student = [];
   List<S2Choice<String>> student = [];
+
+  bool _isLoadingStudents = false;
+  bool _isLoadingNotifications = false;
+  bool _isLoadingSubjects = false;
 
   ///-------------------------
 
@@ -121,7 +125,9 @@ class _NotificationAddState extends State<NotificationAdd> {
     }
   }
 
-  _showStudent() {
+  _showStudent() async {
+    setState(() => _isLoadingStudents = true);
+
     List accountDivision = [];
     for (Map division in _mainDataProvider.mainData['account']
         ['account_division']) {
@@ -131,6 +137,7 @@ class _NotificationAddState extends State<NotificationAdd> {
       "study_year": _mainDataProvider.mainData['setting'][0]['setting_year'],
       "class_school": accountDivision
     };
+    await Future.delayed(const Duration(minutes: 1));
     OtherApi().getStudent(data, true).then((res) {
       for (Map _data in res) {
         student.add(S2Choice<String>(
@@ -139,18 +146,24 @@ class _NotificationAddState extends State<NotificationAdd> {
             group:
                 "${_data['account_division_current']['class_name']} - ${_data['account_division_current']['leader']}"));
       }
+      if (mounted) setState(() => _isLoadingStudents = false);
     });
   }
 
-  _showNotification() {
+  _showNotification() async {
+    setState(() => _isLoadingNotifications = true);
+
     OtherApi().getNotificationList().then((res) {
       for (int i = 0; i < res.length; i++) {
         notificationType.add(S2Choice<String>(value: res[i], title: res[i]));
       }
+      setState(() => _isLoadingNotifications = false);
     });
   }
 
-  _showNotificationSubject() {
+  _showNotificationSubject() async {
+    setState(() => _isLoadingSubjects = true);
+
     List accountDivision = [];
     if (_mainDataProvider.mainData['account']['account_subject'] != null) {
       for (Map subject in _mainDataProvider.mainData['account']
@@ -162,6 +175,7 @@ class _NotificationAddState extends State<NotificationAdd> {
         ));
       }
     }
+    setState(() => _isLoadingSubjects = false);
   }
 
   _send() {
@@ -290,34 +304,36 @@ class _NotificationAddState extends State<NotificationAdd> {
                         ),
                       ),
                       if (_receiver == "الطلاب")
-                        Center(
-                          child: Container(
-                            margin: const EdgeInsets.only(
-                                top: 10, bottom: 10, right: 10, left: 10),
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(10.0),
-                              border: Border.all(
-                                color: MyColor.purple,
+                        _isLoadingStudents
+                            ? const _LoadingText("Loading students data…")
+                            : Center(
+                                child: Container(
+                                  margin: const EdgeInsets.only(
+                                      top: 10, bottom: 10, right: 10, left: 10),
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(10.0),
+                                    border: Border.all(
+                                      color: MyColor.purple,
+                                    ),
+                                    color: MyColor.white1,
+                                  ),
+                                  child: SmartSelect<String>.multiple(
+                                    title: "Students",
+                                    placeholder: 'choose',
+                                    selectedValue: _student,
+                                    choiceGrouped: true,
+                                    onChange: (selected) {
+                                      setState(() => _student = selected.value);
+                                      //_showData(selected.value);
+                                    },
+                                    groupHeaderStyle: const S2GroupHeaderStyle(
+                                        backgroundColor: MyColor.white4),
+                                    choiceItems: student,
+                                    modalFilter: true,
+                                    modalFilterAuto: true,
+                                  ),
+                                ),
                               ),
-                              color: MyColor.white1,
-                            ),
-                            child: SmartSelect<String>.multiple(
-                              title: "Students",
-                              placeholder: 'choose',
-                              selectedValue: _student,
-                              choiceGrouped: true,
-                              onChange: (selected) {
-                                setState(() => _student = selected.value);
-                                //_showData(selected.value);
-                              },
-                              groupHeaderStyle: const S2GroupHeaderStyle(
-                                  backgroundColor: MyColor.white4),
-                              choiceItems: student,
-                              modalFilter: true,
-                              modalFilterAuto: true,
-                            ),
-                          ),
-                        ),
                       if (_receiver == "الصفوف والشعب")
                         Center(
                           child: Container(
@@ -366,28 +382,30 @@ class _NotificationAddState extends State<NotificationAdd> {
                             "Notification Type",
                             style: TextStyle(fontSize: 17),
                           )),
-                      Center(
-                        child: Container(
-                          margin: const EdgeInsets.only(
-                              top: 10, bottom: 10, right: 10, left: 10),
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10.0),
-                            border: Border.all(
-                              color: MyColor.purple,
+                      _isLoadingNotifications
+                          ? const _LoadingText("Loading notification types...")
+                          : Center(
+                              child: Container(
+                                margin: const EdgeInsets.only(
+                                    top: 10, bottom: 10, right: 10, left: 10),
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(10.0),
+                                  border: Border.all(
+                                    color: MyColor.purple,
+                                  ),
+                                  color: MyColor.white1,
+                                ),
+                                child: SmartSelect<String>.single(
+                                  title: "Notification",
+                                  placeholder: 'choose',
+                                  selectedValue: _notificationType!,
+                                  choiceItems: notificationType,
+                                  onChange: (selected) => setState(() {
+                                    _notificationType = selected.value;
+                                  }),
+                                ),
+                              ),
                             ),
-                            color: MyColor.white1,
-                          ),
-                          child: SmartSelect<String>.single(
-                            title: "Notification",
-                            placeholder: 'choose',
-                            selectedValue: _notificationType!,
-                            choiceItems: notificationType,
-                            onChange: (selected) => setState(() {
-                              _notificationType = selected.value;
-                            }),
-                          ),
-                        ),
-                      ),
                       if (notificationSubjectType.contains(_notificationType))
                         Center(
                           child: Container(
@@ -400,15 +418,17 @@ class _NotificationAddState extends State<NotificationAdd> {
                               ),
                               color: MyColor.white1,
                             ),
-                            child: SmartSelect<String>.single(
-                              title: "Subject",
-                              placeholder: 'choose',
-                              selectedValue: _notificationSubject!,
-                              choiceItems: notificationSubject,
-                              onChange: (selected) => setState(() {
-                                _notificationSubject = selected.value;
-                              }),
-                            ),
+                            child: _isLoadingSubjects
+                                ? const _LoadingText("Loading Subject...")
+                                : SmartSelect<String>.single(
+                                    title: "Subject",
+                                    placeholder: 'choose',
+                                    selectedValue: _notificationSubject!,
+                                    choiceItems: notificationSubject,
+                                    onChange: (selected) => setState(() {
+                                      _notificationSubject = selected.value;
+                                    }),
+                                  ),
                           ),
                         ),
                       //notificationSubjectType
@@ -743,4 +763,27 @@ class _NotificationAddState extends State<NotificationAdd> {
       ),
     );
   }
+}
+
+class _LoadingText extends StatelessWidget {
+  final String text;
+  const _LoadingText(this.text);
+
+  @override
+  Widget build(BuildContext context) => Padding(
+        padding: const EdgeInsets.all(20),
+        child: Center(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const CircularProgressIndicator(
+                color: MyColor.yellow,
+              ),
+              const SizedBox(height: 10),
+              Text(text),
+            ],
+          ),
+        ),
+      );
 }

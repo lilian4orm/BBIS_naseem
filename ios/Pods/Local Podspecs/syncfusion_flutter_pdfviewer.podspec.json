@@ -15,7 +15,9 @@
   },
   "source_files": "syncfusion_flutter_pdfviewer/Sources/syncfusion_flutter_pdfviewer/**/*",
   "dependencies": {
-    "Flutter": []
+    "Flutter": [
+
+    ]
   },
   "platforms": {
     "ios": "12.0"

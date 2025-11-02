@@ -119,6 +119,16 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>OrderedSet-OrderedSet_privacy.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>OrderedSet.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-Runner.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -170,11 +180,6 @@
 			<false/>
 		</dict>
 		<key>audio_session.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
-		<key>background_location.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -234,6 +239,16 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>flutter_inappwebview_ios-flutter_inappwebview_ios_privacy.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>flutter_inappwebview_ios.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>flutter_local_notifications-flutter_local_notifications_privacy.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -279,7 +294,7 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>image_gallery_saver.xcscheme</key>
+		<key>image_gallery_saver_plus.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
