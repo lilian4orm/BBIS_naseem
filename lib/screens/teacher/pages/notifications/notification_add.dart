@@ -137,7 +137,6 @@ class _NotificationAddState extends State<NotificationAdd> {
       "study_year": _mainDataProvider.mainData['setting'][0]['setting_year'],
       "class_school": accountDivision
     };
-    await Future.delayed(const Duration(minutes: 1));
     OtherApi().getStudent(data, true).then((res) {
       for (Map _data in res) {
         student.add(S2Choice<String>(
